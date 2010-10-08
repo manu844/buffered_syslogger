@@ -20,7 +20,13 @@ describe "Syslogger" do
       Syslogger.new.should respond_to logger_method.to_sym
     end
   end
-  
+
+  %w{debug info warn error fatal unknown}.each do |logger_method|
+    it "should respond to the #{logger_method.inspect}? method" do
+      Syslogger.new.should respond_to "#{logger_method}?".to_sym
+    end
+  end
+
   it "should respond to <<" do
     logger = Syslogger.new("my_app", Syslog::LOG_PID, Syslog::LOG_USER)
     logger.should respond_to(:<<)
