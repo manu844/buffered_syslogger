@@ -67,7 +67,7 @@ class BufferedSyslogger < ActiveSupport::BufferedLogger
         Syslog.open(@ident, @options, @facility) do |s|
           s.mask = Syslog::LOG_UPTO(MAPPING[@level])
           old_buffer.each do |severity, message|
-            message.split(/[\r\f\n]/).each { |m| s.log(MAPPING[severity], m) }
+            message.split(/[\r\f\n]/).each { |m| s.log(MAPPING[severity], m.gsub('%', '%%')) }
           end
         end
       end

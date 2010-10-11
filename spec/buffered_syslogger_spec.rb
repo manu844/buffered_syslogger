@@ -23,6 +23,12 @@ describe BufferedSyslogger do
     it { should respond_to :"#{logger_method}?" }
   end
 
+  it "should escape % characters" do
+    Syslog.should_receive(:open).and_yield(syslog)
+    syslog.should_receive(:log).with(Syslog::LOG_INFO, "IE6 is at 5.6%% out of 31.1%% total IE share")
+    subject.info "IE6 is at 5.6% out of 31.1% total IE share"
+  end
+
   describe '#add' do
     subject { BufferedSyslogger.new("my_app", Syslog::LOG_PID, Syslog::LOG_USER) }
 
