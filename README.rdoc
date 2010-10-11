@@ -1,11 +1,12 @@
 = BufferedSyslogger
 
 A drop-in replacement for the Rails 3 default BufferedLogger library,
-that logs to syslog instead of a log file. Builds on the `syslogger` gem.
+that logs to syslog instead of a log file. Builds on the
+{syslogger}[http://github.com/crohr/syslogger] gem.
 
 == Installation
 
-Put it into your Gemfile:
+Put this into your Gemfile:
 
   gem 'buffered_syslogger'
 
@@ -24,7 +25,8 @@ Put it into your Gemfile:
 
 == Copyright
 
-Copyright (c) 2010 László Bács, Secret Sauce Partners, Inc.
+Copyright (c) 2010 László Bácsi, Secret Sauce Partners, Inc.
+
 Copyright (c) 2010 Cyril, INRIA Rennes-Bretagne Atlantique.
 
 See LICENSE for details.
