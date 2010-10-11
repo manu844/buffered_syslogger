@@ -2,8 +2,8 @@
 
 Gem::Specification.new do |s|
   s.name         = "buffered_syslogger"
-  s.version      = "0.1.0"
-  s.date         = "2010-10-11"
+  s.version      = "0.1.1"
+  s.date         = "2010-10-12"
   s.authors      = ["László Bácsi", "Cyril Rohr"]
   s.email        = "lackac@secretsaucepartners.com"
   s.homepage     = "http://github.com/sspinc/buffered_syslogger"
