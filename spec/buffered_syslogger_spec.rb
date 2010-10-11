@@ -19,33 +19,25 @@ describe BufferedSyslogger do
   end
 
   %w{debug info warn error fatal unknown}.each do |logger_method|
-    it "should respond to the #{logger_method.inspect} method" do
-      BufferedSyslogger.new.should respond_to logger_method.to_sym
-    end
+    it { should respond_to :"#{logger_method}" }
+    it { should respond_to :"#{logger_method}?" }
   end
 
-  %w{debug info warn error fatal unknown}.each do |logger_method|
-    it "should respond to the #{logger_method.inspect}? method" do
-      BufferedSyslogger.new.should respond_to "#{logger_method}?".to_sym
-    end
-  end
+  describe '#add' do
+    subject { BufferedSyslogger.new("my_app", Syslog::LOG_PID, Syslog::LOG_USER) }
 
-  describe "add" do
-    before do
-      @logger = BufferedSyslogger.new("my_app", Syslog::LOG_PID, Syslog::LOG_USER)
-    end
-    it "should respond to add" do
-      @logger.should respond_to(:add)
-    end
-    it "should correctly log" do
-      Syslog.should_receive(:open).with("my_app", Syslog::LOG_PID, Syslog::LOG_USER).and_yield(syslog)
+    it { should respond_to(:add) }
+
+    it "should correctly log a simple message" do
+      Syslog.should_receive(:open).and_yield(syslog)
       syslog.should_receive(:log).with(Syslog::LOG_INFO, "message")
-      @logger.add(Logger::INFO, "message")
+      subject.add(Logger::INFO, "message")
     end
+
     it "should take the message from the block if :message is nil" do
-      Syslog.should_receive(:open).with("my_app", Syslog::LOG_PID, Syslog::LOG_USER).and_yield(syslog)
+      Syslog.should_receive(:open).and_yield(syslog)
       syslog.should_receive(:log).with(Syslog::LOG_INFO, "my message")
-      @logger.add(Logger::INFO) { "my message" }
+      subject.add(Logger::INFO) { "my message" }
     end
   end
 
