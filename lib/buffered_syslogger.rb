@@ -43,7 +43,7 @@ class BufferedSyslogger < ActiveSupport::BufferedLogger
     @facility = facility
 
     @level = Logger::INFO
-    @buffer = Hash.new { |h,k| h[k] = [] }
+    @buffer = Hash.new([])
     @auto_flushing = 1
     @guard = Mutex.new
   end
