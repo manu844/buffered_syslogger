@@ -21,6 +21,6 @@ that logs to syslog instead of a log file. Builds on the syslogger gem.
   s.rubyforge_project = 'nowarning'
   s.required_rubygems_version = '>= 1.3.6'
 
-  s.add_runtime_dependency "activesupport", "~> 3.1.3"
+  s.add_runtime_dependency "activesupport", "~> 3.X"
   s.add_development_dependency "rspec", ">= 2.0.0"
 end
