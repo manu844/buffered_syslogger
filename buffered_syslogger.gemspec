@@ -1,4 +1,8 @@
 # encoding: utf-8
+if RUBY_VERSION =~ /1.9/
+Encoding.default_external = Encoding::UTF_8
+Encoding.default_internal = Encoding::UTF_8
+end
 
 Gem::Specification.new do |s|
   s.name         = "buffered_syslogger"
@@ -21,6 +25,6 @@ that logs to syslog instead of a log file. Builds on the syslogger gem.
   s.rubyforge_project = 'nowarning'
   s.required_rubygems_version = '>= 1.3.6'
 
-  s.add_runtime_dependency "activesupport", "~> 3.X"
+  s.add_runtime_dependency "activesupport", "~> 3.2.18"
   s.add_development_dependency "rspec", ">= 2.0.0"
 end
